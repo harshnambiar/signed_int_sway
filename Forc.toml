@@ -1,0 +1,7 @@
+[project]
+authors = ["Harsh"]
+entry = "lib.sw"
+license = "Apache-2.0"
+name = "signed_int_sway"
+
+[dependencies]
