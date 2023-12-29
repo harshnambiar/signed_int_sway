@@ -25,6 +25,33 @@ impl Signed {
 		s.sign
 	}
 
+	// returns 0 as a signed integer
+	fn zero() -> Signed {
+		let sn = Signed {
+			sign: true,
+			value: 0,
+		};
+		return sn;
+	}
+
+	// returns 1 as a signed integer
+	fn one() -> Signed {
+		let sn = Signed {
+			sign: true,
+			value: 1,
+		};
+		return sn;
+	}
+
+	// returns -1 as a signed integer
+	fn minus_one() -> Signed {
+		let sn = Signed {
+			sign: false,
+			value: 1,
+		};
+		return sn;
+	}
+
 	// returns a signed integer with the same value but opposite sign
 	fn reverse(s: Signed) -> Signed {
 		let sn = Signed {
@@ -244,6 +271,26 @@ fn test_create_signed() {
 }
 
 #[test]
+fn test_create_zero() {
+    let s = Signed::zero();
+	assert(s.value == 0);
+}
+
+#[test]
+fn test_create_one() {
+    let s = Signed::one();
+	assert(s.value == 1);
+	assert(s.sign);
+}
+
+#[test]
+fn test_create_minus_one() {
+    let s = Signed::minus_one();
+	assert(s.value == 1);
+	assert(!s.sign);
+}
+
+#[test]
 fn test_reverse(){
     let s= Signed::to(true, 7);
     let srev = Signed::reverse(s);
@@ -328,70 +375,70 @@ fn test_div_negative_signed(){
 		assert (cmp == 1);
 	}
 
-	#[test]
-	fn test_compare_signed2(){
-		let s1 = Signed::to(false, 2);
-		let s2 = Signed::to(true, 8);
-		let cmp = Signed::compare(s1, s2);
-		assert (cmp == 2);
-	}
+#[test]
+fn test_compare_signed2(){
+	let s1 = Signed::to(false, 2);
+	let s2 = Signed::to(true, 8);
+	let cmp = Signed::compare(s1, s2);
+	assert (cmp == 2);
+}
 
-	#[test]
-	fn test_compare_signed0(){
-		let s1 = Signed::to(true, 0);
-		let s2 = Signed::to(false, 0);
-		let cmp = Signed::compare(s1, s2);
-		assert (cmp == 0);
-	}
+#[test]
+fn test_compare_signed0(){
+	let s1 = Signed::to(true, 0);
+	let s2 = Signed::to(false, 0);
+	let cmp = Signed::compare(s1, s2);
+	assert (cmp == 0);
+}
 
-	#[test]
-	fn test_power1(){
-		let s= Signed::to(false, 2);
-		let spow = Signed::power(s, 2);
-		assert (spow.value == 4);
-		assert (spow.sign != s.sign);
-	}
+#[test]
+fn test_power1(){
+	let s= Signed::to(false, 2);
+	let spow = Signed::power(s, 2);
+	assert (spow.value == 4);
+	assert (spow.sign != s.sign);
+}
 
-	#[test]
-	fn test_power2(){
-		let s= Signed::to(true, 3);
-		let spow = Signed::power(s, 3);
-		assert (spow.value == 27);
-		assert (spow.sign == s.sign);
-	}
+#[test]
+fn test_power2(){
+	let s= Signed::to(true, 3);
+	let spow = Signed::power(s, 3);
+	assert (spow.value == 27);
+	assert (spow.sign == s.sign);
+}
 
-	#[test]
-	fn test_lshift_signed1(){
-		let s1 = Signed::to(true, 6);
-		
-		let s = Signed::left_shift(s1, 2);
-		assert (s.value == 24);
-		
-	}
+#[test]
+fn test_lshift_signed1(){
+	let s1 = Signed::to(true, 6);
+	
+	let s = Signed::left_shift(s1, 2);
+	assert (s.value == 24);
+	
+}
 
-	#[test]
-	fn test_lshift_signed2(){
-		let s1 = Signed::to(false, 6);
-		
-		let s = Signed::left_shift(s1, 2);
-		assert (s.value == 24);
-		assert (!s.sign);
-	}
+#[test]
+fn test_lshift_signed2(){
+	let s1 = Signed::to(false, 6);
+	
+	let s = Signed::left_shift(s1, 2);
+	assert (s.value == 24);
+	assert (!s.sign);
+}
 
-	#[test]
-	fn test_rshift_signed1(){
-		let s1 = Signed::to(true, 21);
-		
-		let s = Signed::right_shift(s1, 2);
-		assert (s.value == 5);
-		
-	}
+#[test]
+fn test_rshift_signed1(){
+	let s1 = Signed::to(true, 21);
+	
+	let s = Signed::right_shift(s1, 2);
+	assert (s.value == 5);
+	
+}
 
-	#[test]
-	fn test_rshift_signed2(){
-		let s1 = Signed::to(false, 23);
-		
-		let s = Signed::right_shift(s1, 3);
-		assert (s.value == 3);
-		assert (!s.sign);
-	}
+#[test]
+fn test_rshift_signed2(){
+	let s1 = Signed::to(false, 23);
+	
+	let s = Signed::right_shift(s1, 3);
+	assert (s.value == 3);
+	assert (!s.sign);
+}
